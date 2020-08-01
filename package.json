@@ -4,15 +4,18 @@
    "description": "",
    "main": "index.js",
    "scripts": {
-      "clear:deps": "./packages/**/node_modules ./node_modules",
-      "clear:build": "rimraf ./packages/**/build",
+      "clear": "yarn clear:build && yarn clear:deps",
+      "clear:deps": "rimraf ./packages/**/node_modules ./node_modules",
+      "clear:build": "rimraf ./packages/**/build ./packages/graphql/src/generated",
       "prod:server": "node ./packages/server/build/src/index.js",
       "build:server": "yarn clear:build && yarn prisma:generate && yarn workspace @monorepo/server build",
+      "dev:graphql": " env-cmd yarn workspace @monorepo/graphql dev",
       "dev:server": " env-cmd yarn workspace @monorepo/server dev",
       "prisma:generate": "env-cmd yarn workspace @monorepo/db generate",
       "prisma:migrate:up": "env-cmd yarn workspace @monorepo/db migrate:up",
       "prisma:migrate:save": "env-cmd yarn workspace @monorepo/db migrate:save",
-      "test": "yarn workspace @monorepo/common run test"
+      "test": "yarn workspace @monorepo/common run test",
+      "dev": "env-cmd concurrently \"yarn dev:graphql\" \"yarn dev:server\""
    },
    "keywords": [],
    "author": "Lucas Munhoz",
@@ -21,15 +24,24 @@
       "@types/express": "^4.17.7",
       "@types/faker": "^4.1.12",
       "@types/jest": "^26.0.8",
+      "concurrently": "^5.2.0",
       "env-cmd": "^10.1.0",
       "jest": "^26.2.2",
+      "kill-port": "^1.6.1",
       "rimraf": "^3.0.2",
       "ts-jest": "^26.1.4",
+      "ts-node-dev": "^1.0.0-pre.56",
       "tsc-watch": "^4.2.9",
       "typescript": "^3.9.7"
    },
-   "workspaces": [
-      "packages/*"
-   ],
+   "workspaces": {
+      "packages": [
+         "packages/*"
+      ],
+      "nohoist": [
+         "**/@nexus/schema",
+         "**/@nexus/schema/**"
+      ]
+   },
    "private": true
 }

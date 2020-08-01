@@ -7,9 +7,5 @@
    },
    "include": ["."],
    "exclude": ["build"],
-   "references": [
-      { "path": "../common" },
-      { "path": "../db" },
-      { "path": "../graphql" }
-   ]
+   "references": [{ "path": "../common" }, { "path": "../db" }]
 }

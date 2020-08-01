@@ -9,8 +9,8 @@
 
 ## Run the server
 
-```
-yarn dev:server
+```bash
+yarn dev
 ```
 
 ## Build for production
