@@ -4,7 +4,7 @@
    "description": "",
    "scripts": {
       "build": "tsc --build",
-      "dev": "tsc-watch --build --onSuccess \"yarn start\"",
+      "dev": "tsc-watch --build --preserveWatchOutput --onSuccess \"yarn start\"",
       "start": "node build/src/index.js"
    },
    "keywords": [],

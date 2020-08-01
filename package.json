@@ -5,7 +5,7 @@
    "main": "index.js",
    "scripts": {
       "clear:deps": "rimraf ./packages/**/node_modules ./node_modules",
-      "clear:build": "rimraf ./packages/**/build",
+      "clear:build": "rimraf ./packages/**/build ./packages/graphql/src/generated",
       "prod:server": "node ./packages/server/build/src/index.js",
       "build:server": "yarn clear:build && yarn prisma:generate && yarn workspace @monorepo/server build",
       "dev:graphql": " env-cmd yarn workspace @monorepo/graphql dev",
