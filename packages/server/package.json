@@ -5,8 +5,7 @@
    "scripts": {
       "build": "tsc --build",
       "dev": "tsc-watch --build --onSuccess \"yarn start\"",
-      "start": "node build/src/index.js",
-      "test": "echo \"Error: no test specified\" && exit 1"
+      "start": "node build/src/index.js"
    },
    "keywords": [],
    "author": "Lucas Munhoz",

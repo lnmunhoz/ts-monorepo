@@ -6,13 +6,13 @@
    "scripts": {
       "clear:deps": "./packages/**/node_modules ./node_modules",
       "clear:build": "rimraf ./packages/**/build",
-      "test": "echo \"Error: no test specified\" && exit 1",
       "prod:server": "node ./packages/server/build/src/index.js",
       "build:server": "yarn clear:build && yarn prisma:generate && yarn workspace @monorepo/server build",
       "dev:server": " env-cmd yarn workspace @monorepo/server dev",
       "prisma:generate": "env-cmd yarn workspace @monorepo/db generate",
       "prisma:migrate:up": "env-cmd yarn workspace @monorepo/db migrate:up",
-      "prisma:migrate:save": "env-cmd yarn workspace @monorepo/db migrate:save"
+      "prisma:migrate:save": "env-cmd yarn workspace @monorepo/db migrate:save",
+      "test": "yarn workspace @monorepo/common run test"
    },
    "keywords": [],
    "author": "Lucas Munhoz",
@@ -20,8 +20,11 @@
    "devDependencies": {
       "@types/express": "^4.17.7",
       "@types/faker": "^4.1.12",
+      "@types/jest": "^26.0.8",
       "env-cmd": "^10.1.0",
+      "jest": "^26.2.2",
       "rimraf": "^3.0.2",
+      "ts-jest": "^26.1.4",
       "tsc-watch": "^4.2.9",
       "typescript": "^3.9.7"
    },

@@ -7,8 +7,7 @@
       "build": "tsc --build",
       "generate": "prisma generate",
       "migrate:up": "prisma migrate up --experimental",
-      "migrate:save": "prisma migrate save --experimental",
-      "test": "echo \"Error: no test specified\" && exit 1"
+      "migrate:save": "prisma migrate save --experimental"
    },
    "keywords": [],
    "author": "Lucas Munhoz",
