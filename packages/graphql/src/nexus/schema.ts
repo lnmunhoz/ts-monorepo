@@ -40,7 +40,7 @@ if (NEXUS_DEV) {
    console.log("Compiling nexus in watch mode...")
 }
 
-export const schema = makeSchema({
+const schema = makeSchema({
    types: [Query, UserType, usersQuery],
    outputs: NEXUS_DEV
       ? {
@@ -59,3 +59,7 @@ export const schema = makeSchema({
       contextType: "ctx.GraphQLContext",
    },
 })
+
+export const getSchema = async () => {
+   return schema
+}

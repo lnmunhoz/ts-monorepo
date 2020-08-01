@@ -1,5 +1,5 @@
 import "reflect-metadata"
 
-export * from "./nexus"
-export * from "./typegraphql"
+export * as nexus from "./nexus"
+export * as typegraphql from "./typegraphql"
 export * from "./context"
