@@ -1,10 +1,11 @@
 {
-   "name": "@monorepo/server",
+   "name": "@monorepo/graphql",
    "version": "1.0.0",
    "description": "",
+   "main": "build/src",
    "scripts": {
       "build": "tsc --build",
-      "dev": "tsc-watch --build --onSuccess \"yarn start\"",
+      "dev": "NEXUS_DEV=true ts-node-dev --no-notify --transpile-only --respawn src/index.ts",
       "start": "node build/src/index.js"
    },
    "keywords": [],
@@ -14,11 +15,6 @@
    "dependencies": {
       "@monorepo/common": "*",
       "@monorepo/db": "*",
-      "@monorepo/graphql": "*",
-      "apollo-server-express": "^2.16.1",
-      "cors": "^2.8.5",
-      "express": "^4.17.1",
-      "faker": "^4.1.0",
-      "graphql": "^15.3.0"
+      "@nexus/schema": "^0.14.0"
    }
 }

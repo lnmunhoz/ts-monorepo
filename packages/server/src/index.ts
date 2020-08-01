@@ -1,11 +1,22 @@
 import express from "express"
+import { ApolloServer } from "apollo-server-express"
+import cors from "cors"
 import faker from "faker"
 import { CommonModule } from "@monorepo/common"
 import { PrismaClient } from "@monorepo/db"
+import { schema } from "@monorepo/graphql"
 
 const app = express()
 const PORT = process.env.PORT || 4000
 const prisma = new PrismaClient()
+
+const apollo = new ApolloServer({
+   schema,
+   context: () => ({ prisma }),
+})
+
+apollo.applyMiddleware({ app, cors: true })
+app.use(cors())
 
 prisma
    .connect()
