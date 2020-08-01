@@ -6,11 +6,7 @@
       "outDir": "build",
       "resolveJsonModule": true,
       "composite": true,
-      "paths": {
-         "@monorepo/common": ["../common"],
-         "@monorepo/db": ["../db"]
-      }
+      "declaration": true
    },
-   "include": ["."],
-   "references": [{ "path": "../common" }, { "path": "../db" }]
+   "include": ["."]
 }

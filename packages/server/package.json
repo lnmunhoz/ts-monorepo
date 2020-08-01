@@ -14,6 +14,8 @@
    "private": true,
    "dependencies": {
       "@monorepo/common": "*",
-      "express": "^4.17.1"
+      "@monorepo/db": "*",
+      "express": "^4.17.1",
+      "faker": "^4.1.0"
    }
 }

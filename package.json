@@ -4,15 +4,20 @@
    "description": "",
    "main": "index.js",
    "scripts": {
-      "clear": "rimraf ./packages/**/build",
+      "clear": "rimraf ./packages/**/build ./packages/**/node_modules ./node_modules",
       "test": "echo \"Error: no test specified\" && exit 1",
-      "dev:server": "yarn workspace @monorepo/server dev"
+      "dev:server": " env-cmd yarn workspace @monorepo/server dev",
+      "prisma:generate": "env-cmd yarn workspace @monorepo/db generate",
+      "prisma:migrate:up": "env-cmd yarn workspace @monorepo/db migrate:up",
+      "prisma:migrate:save": "env-cmd yarn workspace @monorepo/db migrate:save"
    },
    "keywords": [],
    "author": "Lucas Munhoz",
    "license": "ISC",
    "devDependencies": {
       "@types/express": "^4.17.7",
+      "@types/faker": "^4.1.12",
+      "env-cmd": "^10.1.0",
       "rimraf": "^3.0.2",
       "tsc-watch": "^4.2.9",
       "typescript": "^3.9.7"
