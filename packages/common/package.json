@@ -1,0 +1,16 @@
+{
+   "name": "@monorepo/common",
+   "version": "1.0.0",
+   "description": "",
+   "main": "build/src",
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+   },
+   "keywords": [],
+   "author": "Lucas Munhoz",
+   "license": "ISC",
+   "private": true,
+   "dependencies": {
+      "express": "^4.17.1"
+   }
+}

@@ -1,0 +1,14 @@
+{
+   "extends": "../../tsconfig.base.json",
+   "compilerOptions": {
+      "baseUrl": ".",
+      "rootDir": ".",
+      "outDir": "build",
+      "resolveJsonModule": true,
+      "paths": {
+         "@monorepo/common": ["../common"]
+      }
+   },
+   "include": ["."],
+   "references": [{ "path": "../common" }]
+}
