@@ -27,6 +27,7 @@
       "concurrently": "^5.2.0",
       "env-cmd": "^10.1.0",
       "jest": "^26.2.2",
+      "kill-port": "^1.6.1",
       "rimraf": "^3.0.2",
       "ts-jest": "^26.1.4",
       "ts-node-dev": "^1.0.0-pre.56",
