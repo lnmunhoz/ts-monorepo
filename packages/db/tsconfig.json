@@ -3,10 +3,7 @@
    "compilerOptions": {
       "baseUrl": ".",
       "rootDir": ".",
-      "outDir": "build",
-      "resolveJsonModule": true,
-      "composite": true,
-      "declaration": true
+      "outDir": "build"
    },
    "include": ["."]
 }

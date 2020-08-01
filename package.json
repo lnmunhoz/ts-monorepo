@@ -4,10 +4,11 @@
    "description": "",
    "main": "index.js",
    "scripts": {
-      "clear": "rimraf ./packages/**/build ./packages/**/node_modules ./node_modules",
+      "clear:deps": "./packages/**/node_modules ./node_modules",
+      "clear:build": "rimraf ./packages/**/build",
       "test": "echo \"Error: no test specified\" && exit 1",
       "prod:server": "node ./packages/server/build/src/index.js",
-      "build:server": " env-cmd yarn workspace @monorepo/server build",
+      "build:server": "yarn clear:build && yarn prisma:generate && yarn workspace @monorepo/server build",
       "dev:server": " env-cmd yarn workspace @monorepo/server dev",
       "prisma:generate": "env-cmd yarn workspace @monorepo/db generate",
       "prisma:migrate:up": "env-cmd yarn workspace @monorepo/db migrate:up",
