@@ -4,6 +4,7 @@
    "description": "",
    "main": "index.js",
    "scripts": {
+      "clear": "yarn clear:build && yarn clear:deps",
       "clear:deps": "rimraf ./packages/**/node_modules ./node_modules",
       "clear:build": "rimraf ./packages/**/build ./packages/graphql/src/generated",
       "prod:server": "node ./packages/server/build/src/index.js",
