@@ -5,6 +5,7 @@
       "rootDir": ".",
       "outDir": "build",
       "resolveJsonModule": true,
+      "composite": true,
       "paths": {
          "@monorepo/common": ["../common"]
       }
