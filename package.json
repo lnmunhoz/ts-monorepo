@@ -6,7 +6,7 @@
    "scripts": {
       "clear": "rimraf ./packages/**/build ./packages/**/node_modules ./node_modules",
       "test": "echo \"Error: no test specified\" && exit 1",
-      "prod:server": "env-cmd node ./packages/server/build/src/index.js",
+      "prod:server": "node ./packages/server/build/src/index.js",
       "build:server": " env-cmd yarn workspace @monorepo/server build",
       "dev:server": " env-cmd yarn workspace @monorepo/server dev",
       "prisma:generate": "env-cmd yarn workspace @monorepo/db generate",

@@ -12,3 +12,9 @@
 ```
 yarn dev:server
 ```
+
+## Build for production
+
+1. Run all the commands from setup section
+2. Build the prod server with `yarn build:server`
+3. Start the prod server with `yarn prod:server`. You need to setup the env variables somewhere!
