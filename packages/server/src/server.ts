@@ -2,9 +2,12 @@ import { CommonModule } from "@monorepo/common"
 import { PrismaClient } from "@monorepo/db"
 import { nexus, typegraphql } from "@monorepo/graphql"
 import { ApolloServer } from "apollo-server-express"
+import bodyParser from "body-parser"
+import compression from "compression"
 import cors from "cors"
 import express from "express"
 import { GraphQLSchema } from "graphql"
+import helmet from "helmet"
 
 const PORT = process.env.PORT || 4000
 export const prisma = new PrismaClient()
@@ -37,8 +40,12 @@ export const bootstrap = async (framework: framework) => {
    const app = express()
    const apollo = await initApolloServer(framework)
 
-   apollo.applyMiddleware({ app, cors: true })
    app.use(cors())
+   app.use(helmet())
+   app.use(compression())
+   app.use(express.json())
+   app.use(bodyParser.urlencoded({ extended: true }))
+   apollo.applyMiddleware({ app, cors: true })
 
    app.get("/hello", (req, res) => {
       res.status(200).send(`${CommonModule}`)
