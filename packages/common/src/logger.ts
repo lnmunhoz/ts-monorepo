@@ -15,10 +15,15 @@ export const createLogger = (isProduction: boolean) => {
            }),
            winston.format.json(),
            winston.format.printf(({ level, label, message, timestamp }) => {
+              let log = `[${timestamp}] ${level} `
+
               if (label) {
-                 return `[${timestamp}]  ${level}: (${label}) ${message}`
+                 log += `${label} `
               }
-              return `[${timestamp}] ${level}: ${message}`
+
+              log += `${message}`
+
+              return log
            })
         )
 

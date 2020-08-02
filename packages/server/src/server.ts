@@ -52,9 +52,9 @@ export const bootstrap = async (framework: framework) => {
    const apollo = await initApolloServer(framework)
 
    app.use((req, res, next) => {
-      // TODO: Fix typings
-      // @ts-ignore
-      req.transactionId = cuid()
+      // TransactionId, do something with this for tracing.
+      const tid = cuid()
+      logger.debug(`req:${tid}`)
       next()
    })
 
