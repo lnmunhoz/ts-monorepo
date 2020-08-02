@@ -11,6 +11,9 @@ import { GraphQLSchema } from "graphql"
 import helmet from "helmet"
 import { isProduction } from "./config"
 
+// @ts-ignore
+import statusMonitor from "express-status-monitor"
+
 const PORT = process.env.PORT || 4000
 export const prisma = new PrismaClient()
 export const logger = createLogger(isProduction)
@@ -64,6 +67,11 @@ export const bootstrap = async (framework: framework) => {
    app.use(express.json())
    app.use(bodyParser.urlencoded({ extended: true }))
    apollo.applyMiddleware({ app, cors: true })
+
+   // Enable status monitor package (could not find the typings)
+   const status = statusMonitor() as any
+   app.use(status)
+   app.get("/", status.pageRoute)
 
    app.get("/hello", (req, res) => {
       res.status(200).send(`${CommonModule}`)
