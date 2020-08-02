@@ -1,18 +1,19 @@
-import { CommonModule } from "@monorepo/common"
+import { CommonModule, createLogger } from "@monorepo/common"
 import { PrismaClient } from "@monorepo/db"
 import { nexus, typegraphql } from "@monorepo/graphql"
 import { ApolloServer } from "apollo-server-express"
 import bodyParser from "body-parser"
 import compression from "compression"
 import cors from "cors"
+import cuid from "cuid"
 import express from "express"
 import { GraphQLSchema } from "graphql"
 import helmet from "helmet"
-import { createLogger } from "./logger"
+import { isProduction } from "./config"
 
 const PORT = process.env.PORT || 4000
 export const prisma = new PrismaClient()
-const logger = createLogger()
+const logger = createLogger(isProduction)
 
 let schemaCache: GraphQLSchema
 
@@ -29,11 +30,19 @@ const initApolloServer = async (framework: framework) => {
          framework === "nexus"
             ? await nexus.getSchema()
             : await typegraphql.getSchema()
+
+      // Add middlwrares if needed
+      // graphqlMiddleware(schemaCache, ...middlewares)
    }
 
    return new ApolloServer({
       schema: schemaCache,
-      context: () => ({ prisma }),
+      context: ({ req, res }) => ({
+         req,
+         res,
+         prisma,
+         logger: logger.child({ label: "ctx" }),
+      }),
    })
 }
 
@@ -41,6 +50,13 @@ const initApolloServer = async (framework: framework) => {
 export const bootstrap = async (framework: framework) => {
    const app = express()
    const apollo = await initApolloServer(framework)
+
+   app.use((req, res, next) => {
+      // TODO: Fix typings
+      // @ts-ignore
+      req.transactionId = cuid()
+      next()
+   })
 
    app.use(cors())
    app.use(helmet())

@@ -1,7 +1,8 @@
-import winston from "winston"
-import { isProduction } from "./config"
+import winston, { Logger } from "winston"
 
-export const createLogger = () => {
+export type ILogger = Logger
+
+export const createLogger = (isProduction: boolean) => {
    const format = isProduction
       ? winston.format.combine(
            winston.format.timestamp(),
@@ -13,14 +14,16 @@ export const createLogger = () => {
               format: "YYYY-MM-DD HH:mm:ss",
            }),
            winston.format.json(),
-           winston.format.printf(({ level, message, timestamp }) => {
+           winston.format.printf(({ level, label, message, timestamp }) => {
+              if (label) {
+                 return `[${timestamp}]  ${level}: (${label}) ${message}`
+              }
               return `[${timestamp}] ${level}: ${message}`
            })
         )
 
    const logger = winston.createLogger({
       format,
-      //   defaultMeta: { service: '' },
       transports: [
          //
          // - Write all logs with level `error` and below to `error.log`
@@ -35,7 +38,7 @@ export const createLogger = () => {
    // If we're not in production then log to the `console` with the format:
    // `${info.level}: ${info.message} JSON.stringify({ ...rest }) `
    //
-   if (process.env.NODE_ENV !== "production") {
+   if (!isProduction) {
       logger.add(
          new winston.transports.Console({
             format,
