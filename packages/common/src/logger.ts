@@ -42,6 +42,7 @@ export const createLogger = (isProduction: boolean) => {
       logger.add(
          new winston.transports.Console({
             format,
+            level: "debug",
          })
       )
    }

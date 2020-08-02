@@ -13,7 +13,7 @@ import { isProduction } from "./config"
 
 const PORT = process.env.PORT || 4000
 export const prisma = new PrismaClient()
-const logger = createLogger(isProduction)
+export const logger = createLogger(isProduction)
 
 let schemaCache: GraphQLSchema
 
