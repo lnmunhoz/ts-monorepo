@@ -10,8 +10,6 @@ import express from "express"
 import { GraphQLSchema } from "graphql"
 import helmet from "helmet"
 import { isProduction } from "./config"
-
-// @ts-ignore
 import statusMonitor from "express-status-monitor"
 
 const PORT = process.env.PORT || 4000
