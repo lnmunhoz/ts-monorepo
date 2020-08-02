@@ -22,7 +22,8 @@
       "express": "^4.17.1",
       "faker": "^4.1.0",
       "graphql": "^15.3.0",
-      "helmet": "^3.23.3"
+      "helmet": "^3.23.3",
+      "winston": "^3.3.3"
    },
    "devDependencies": {
       "@types/body-parser": "^1.19.0",

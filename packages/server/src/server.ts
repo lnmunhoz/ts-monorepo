@@ -8,9 +8,11 @@ import cors from "cors"
 import express from "express"
 import { GraphQLSchema } from "graphql"
 import helmet from "helmet"
+import { createLogger } from "./logger"
 
 const PORT = process.env.PORT || 4000
 export const prisma = new PrismaClient()
+const logger = createLogger()
 
 let schemaCache: GraphQLSchema
 
@@ -18,11 +20,11 @@ let schemaCache: GraphQLSchema
 type framework = "nexus" | "typegraphql"
 
 const initApolloServer = async (framework: framework) => {
-   console.log("Framework selected:", framework)
+   logger.info(`Framework selected: ${framework}`)
 
    if (!schemaCache) {
       // I am not sure if this is necessary, but is a good practice in aws-lambda
-      console.log("Generating schema and caching...")
+      logger.info("Generating schema and caching...")
       schemaCache =
          framework === "nexus"
             ? await nexus.getSchema()
@@ -57,6 +59,6 @@ export const bootstrap = async (framework: framework) => {
    })
 
    app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`)
+      logger.info(`Server is running on port ${PORT}`)
    })
 }
