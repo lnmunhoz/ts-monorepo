@@ -3,7 +3,10 @@
    "compilerOptions": {
       "baseUrl": ".",
       "rootDir": ".",
-      "outDir": "build"
+      "outDir": "build",
+      "paths": {
+         "typeorm": ["../../node_modules/typeorm"]
+      }
    },
    "include": ["."],
    "exclude": ["build"]
