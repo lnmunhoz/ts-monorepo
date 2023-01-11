@@ -16,7 +16,7 @@
       "@monorepo/common": "*",
       "@monorepo/db": "*",
       "@nexus/schema": "^0.14.0",
-      "class-validator": "^0.12.2",
+      "class-validator": "^0.14.0",
       "reflect-metadata": "^0.1.13",
       "type-graphql": "^1.0.0-rc.3"
    }
